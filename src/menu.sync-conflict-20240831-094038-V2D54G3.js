@@ -1,11 +1,15 @@
-import { get_menu, set_menu_order} from './menu_service'
-import {foo} from './listado_comandas'
+import { foo, get_menu, set_menu_order} from './menu_service'
+
 import React, { useEffect, useState } from "react"
-import {useItemsContext} from './items_context'
+
+
+
 
 export const Menu = () => {
+
     const [menu_data, set_menu_data] = useState (null)
-    const {items, setItems} = useItemsContext()
+
+    //const [menu_order, set_menu_order] = useState (null)
 
     useEffect(() => {
         const fetchMenuData = async () => {
@@ -29,8 +33,6 @@ export const Menu = () => {
 
     const addItem = (theItem) =>
 	  {
-	      console.log("Se está añadiendo esto: ", theItem)
-	      setItems([...items, theItem])
 	      console.log("Intento de hacer una comanda")
 	      set_menu_order(theItem)
 	  }
@@ -40,7 +42,7 @@ export const Menu = () => {
             {/* Render your menu data here */}
             {menu_data ? (
                 menu_data.map((item, index) => {
-		    return <div key={item.name}>{item.name}: {item.price} <button onClick={() => addItem(item)}>+</button></div> 
+		    return <div key={item.name}>{item.name}: {item.price} <button onClick={() => addItem(item.name)}>+</button></div> 
 		})
 		
             ) : (

@@ -8,6 +8,7 @@ export const get_menu = async () =>
     try {
 	var result_menu = ""
 	const url = `http://localhost:3000/menu`
+
 	return (fetch(url))
 
     }
@@ -27,7 +28,7 @@ export const set_menu_order = async (theItem) =>
 		"Content-Type": "application/json"
 	    },
 	    body:
-	    `{"${theItem}": 1}`
+	    `{${theItem}: 1}`
 	    
 	})
     }
