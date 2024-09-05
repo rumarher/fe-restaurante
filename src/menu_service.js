@@ -17,8 +17,22 @@ export const get_menu = async () =>
     }
 }
 
-export const set_menu_order = async (theItem) =>
-{
+const counter = [].reduce((acc, theitem) =>
+    {
+	if (acc[theitem.name])
+	    {
+		acc[theitem.name]++
+	    }
+	else
+	    {
+		acc[theitem.name] = 1
+	    }
+	return acc	    
+    }, {})
+
+export const set_menu_order = async (items) =>
+    {
+	console.log("Aquí están los items: ", items)
     try {
 	const url = `http://localhost:3000/to-order`
 	fetch(url, {
@@ -26,8 +40,8 @@ export const set_menu_order = async (theItem) =>
 	    headers: {
 		"Content-Type": "application/json"
 	    },
-	    body:
-	    `{"${theItem}": 1}`
+	    body: `${items}`
+		//`{"${items}": 1}`
 	    
 	})
     }
